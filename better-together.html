@@ -17,6 +17,7 @@
     --navy:       #182231;
     --navy-2:     #0F1620;
     --brass:      #9C7A3C;
+    --brass-text: #7C6130;
     --brass-lt:   #C7A25E;
     --oxblood:    #6E2530;
     --line:       #C7C0AC;
@@ -49,7 +50,7 @@
     font-size:12px;
     letter-spacing:0.14em;
     text-transform:uppercase;
-    color:var(--brass);
+    color:var(--brass-text);
     display:block;
     margin-bottom:20px;
   }
@@ -87,7 +88,7 @@
     color:var(--ink-soft);
     margin-bottom:28px;
   }
-  .hero-stat b{ color:var(--brass); font-weight:600; font-size:1.15em; }
+  .hero-stat b{ color:var(--brass-text); font-weight:600; font-size:1.15em; }
 
   /* SIGNATURE: the ceiling line */
   .ceiling{
@@ -142,14 +143,23 @@
   .bg-alt h3{ color:var(--paper-on-navy); }
   .bg-alt strong{ color:var(--brass-lt); }
 
-  /* benefits list */
+  /* benefits grid */
+  .benefits-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0 40px;
+  }
+  @media (max-width:640px){
+    .benefits-grid{ grid-template-columns:1fr; }
+  }
   .benefit{
     display:grid;
     grid-template-columns:28px 1fr;
     gap:16px;
     padding:16px 0;
+    border-bottom:1px solid var(--line);
   }
-  .benefit .mark{ color:var(--brass); font-family:var(--serif); font-style:italic; font-size:20px; }
+  .benefit .mark{ color:var(--brass-text); font-family:var(--serif); font-style:italic; font-size:20px; }
 
   /* how it works */
   .facilitator{
@@ -166,7 +176,7 @@
   .step-num{
     font-family:var(--mono);
     font-size:13px;
-    color:var(--brass);
+    color:var(--brass-text);
     padding-top:4px;
   }
   .step p{ color:var(--ink-soft); margin-top:8px; }
@@ -209,7 +219,7 @@
   }
   .roy p{ color:var(--ink-soft); font-size:15px; }
   .roy a{
-    color:var(--brass);
+    color:var(--brass-text);
     text-decoration:none;
     font-size:14px;
     font-family:var(--mono);
@@ -223,7 +233,30 @@
     text-align:center;
   }
   footer a{ color:var(--ink-soft); font-size:13px; text-decoration:none; }
-  footer a:hover{ color:var(--brass); }
+  footer a:hover{ color:var(--brass-text); }
+
+  /* mobile sticky CTA */
+  .mobile-sticky-cta{
+    display:none;
+    position:fixed; left:0; right:0; bottom:0; z-index:60;
+    background:var(--paper);
+    border-top:1px solid var(--line);
+    padding:12px 20px max(12px, env(safe-area-inset-bottom));
+    box-shadow:0 -6px 18px rgba(20,24,30,0.12);
+    transform:translateY(100%);
+    transition:transform .25s ease;
+  }
+  .mobile-sticky-cta.show{ transform:translateY(0); }
+  .mobile-sticky-cta a{
+    display:block; text-align:center;
+    font-family:var(--mono); font-size:13px; text-transform:uppercase; letter-spacing:.07em;
+    padding:13px 20px;
+    background:var(--brass-lt); color:var(--navy-2);
+    text-decoration:none; border:1px solid var(--brass-lt);
+  }
+  @media (max-width:640px){
+    .mobile-sticky-cta{ display:block; }
+  }
 
   .reveal{
     opacity:0;
@@ -246,6 +279,9 @@
       <p class="lede reveal">Many are happy to stay that way. Good for them. This isn't for them.</p>
       <p class="filter-line reveal">If you're not one of them — if you want more, and haven't found the way there yet — keep reading.</p>
     </div>
+    <p class="reveal" style="margin-top:32px;">
+      <a href="#program" style="font-family:var(--mono); font-size:12.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--brass-text); text-decoration:none;">See how it works ↓</a>
+    </p>
   </section>
 
 
@@ -281,31 +317,33 @@
 
   <!-- BENEFITS -->
   <section style="padding-top:40px; padding-bottom:32px;">
-    <div class="benefit reveal">
-      <span class="mark">01</span>
-      <p>What feels like your problem probably isn't just yours.</p>
-    </div>
-    <div class="benefit reveal">
-      <span class="mark">02</span>
-      <p>What's unclear to you is already working for someone else.</p>
-    </div>
-    <div class="benefit reveal">
-      <span class="mark">03</span>
-      <p>Learn what's working. Borrow the fix, or borrow the opportunity you hadn't even considered.</p>
-    </div>
-    <div class="benefit reveal">
-      <span class="mark">04</span>
-      <p>Share your goal out loud. In front of people who'll ask what happens next — and hold you to it.</p>
-    </div>
-    <div class="benefit reveal">
-      <span class="mark">05</span>
-      <p>Compare notes with a small cohort of non-competing firm owners. See the patterns you can't see from inside your own firm — and the openings you can't see either.</p>
+    <div class="benefits-grid">
+      <div class="benefit reveal">
+        <span class="mark">01</span>
+        <p>What feels like your problem probably isn't just yours.</p>
+      </div>
+      <div class="benefit reveal">
+        <span class="mark">02</span>
+        <p>What's unclear to you is already working for someone else.</p>
+      </div>
+      <div class="benefit reveal">
+        <span class="mark">03</span>
+        <p>Learn what's working. Borrow the fix, or borrow the opportunity you hadn't even considered.</p>
+      </div>
+      <div class="benefit reveal">
+        <span class="mark">04</span>
+        <p>Share your goal out loud. In front of people who'll ask what happens next — and hold you to it.</p>
+      </div>
+      <div class="benefit reveal">
+        <span class="mark">05</span>
+        <p>Compare notes with a small cohort of non-competing firm owners. See the patterns you can't see from inside your own firm — and the openings you can't see either.</p>
+      </div>
     </div>
   </section>
 
 
   <!-- HOW IT WORKS -->
-  <section style="padding-top:40px; padding-bottom:32px;">
+  <section id="program" style="padding-top:40px; padding-bottom:32px; scroll-margin-top:36px;">
     <span class="eyebrow reveal">How it works</span>
     <h2 class="reveal" style="margin-bottom:36px;">A small group, a shared diagnostic, real firms.</h2>
     <p class="facilitator reveal">Facilitated by Roy West, business coach with 12 years' experience working with law firms across Australia.</p>
@@ -330,6 +368,9 @@
         <h3>Track your decisions and results</h3>
         <p>Turn valuable conversations into action. Set priorities, and hold yourself accountable.</p>
       </div>
+    </div>
+    <div class="reveal" style="margin-top:36px; padding-top:28px; border-top:1px solid var(--line);">
+      <a class="btn" href="https://businessforlawyers.com.au/index.html#contact">Apply for the next cohort <span aria-hidden="true">→</span></a>
     </div>
   </section>
 
@@ -361,7 +402,7 @@
     <h2 class="reveal" style="margin-bottom:20px;">Stop solving firm challenges in a vacuum.</h2>
     <p class="lede dim reveal">Join a cohort of peers building better, more resilient firms — together.</p>
     <div class="reveal" style="margin-top:36px;">
-      <a class="btn" href="#book">Book a conversation with Roy <span aria-hidden="true">→</span></a>
+      <a class="btn" href="https://businessforlawyers.com.au/index.html#contact">Apply for the next cohort <span aria-hidden="true">→</span></a>
     </div>
 
     <div class="roy reveal">
@@ -375,6 +416,10 @@
 <footer>
   <a href="https://businessforlawyers.com.au">businessforlawyers.com.au</a>
 </footer>
+
+<div class="mobile-sticky-cta" id="stickyCta">
+  <a href="https://businessforlawyers.com.au/index.html#contact">Apply for the next cohort</a>
+</div>
 
 <script>
   var els = document.querySelectorAll('.reveal, .ceiling, .break-line');
@@ -391,6 +436,26 @@
   } else {
     els.forEach(function(el){ el.classList.add('in-view'); });
   }
+
+  // mobile sticky CTA: show once past hero, hide once final CTA is in view
+  var stickyCta = document.getElementById('stickyCta');
+  var heroEl = document.querySelector('.hero');
+  var finalCtaEl = document.querySelector('.cta-section');
+  function updateSticky(){
+    if(!stickyCta || !heroEl || !finalCtaEl) return;
+    var heroBottom = heroEl.getBoundingClientRect().bottom;
+    var finalCtaTop = finalCtaEl.getBoundingClientRect().top;
+    var pastHero = heroBottom < 0;
+    var reachedFinalCta = finalCtaTop < window.innerHeight;
+    if(pastHero && !reachedFinalCta){
+      stickyCta.classList.add('show');
+    } else {
+      stickyCta.classList.remove('show');
+    }
+  }
+  window.addEventListener('scroll', updateSticky, { passive:true });
+  window.addEventListener('resize', updateSticky);
+  updateSticky();
 </script>
 
 </body>
